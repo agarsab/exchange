@@ -18,13 +18,10 @@ Param(
  
 Process 
 {
-
 $Today=Get-Date 
 
 $ReceivedFolderStatistics=Get-MailboxFolderStatistics -identity $Identity -IncludeOldestAndNewestItems -folderscope inbox | where {$_.FolderType -eq "Inbox"} |  select-object Identity,Date,NewestItemReceivedDate,FolderSize,ItemsInFolder
-
 $SentFolderStatistics=Get-MailboxFolderStatistics -identity $Identity -IncludeOldestAndNewestItems -folderscope SentItems | select-object Identity,Name,Date,NewestItemReceivedDate,FolderSize,ItemsInFolder 
-
 $FolderStatistics = New-Object PSObject
 
 add-member -input $FolderStatistics -membertype noteproperty -name "Identity" -value $Identity
